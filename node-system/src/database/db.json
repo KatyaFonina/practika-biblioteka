@@ -1,0 +1,44 @@
+{
+  "digitalResources": [
+    {
+      "id": 1,
+      "title": "Электронный учебник по JavaScript",
+      "type": "ebook",
+      "format": "PDF",
+      "size": "2.4 MB",
+      "url": "/digital/js-guide.pdf",
+      "access_count": 45
+    },
+    {
+      "id": 2, 
+      "title": "Видеокурс по Node.js",
+      "type": "video",
+      "format": "MP4",
+      "size": "150 MB",
+      "url": "/digital/node-course.mp4",
+      "access_count": 28
+    }
+  ],
+  "physicalBooks": [
+    {
+      "id": 1,
+      "inventory_number": "LIB-2023-001",
+      "title": "Мастер и Маргарита",
+      "author": "Михаил Булгаков",
+      "year": 1967,
+      "location": "Стеллаж А, полка 3",
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "inventory_number": "LIB-2023-002",
+      "title": "Преступление и наказание",
+      "author": "Фёдор Достоевский",
+      "year": 1866,
+      "location": "Стеллаж Б, полка 1",
+      "status": "borrowed"
+    }
+  ],
+  "loans": [],
+  "readers": []
+}

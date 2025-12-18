@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="LibraryService"
+             targetNamespace="urn:LibraryService"
+             xmlns:tns="urn:LibraryService"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+    <types>
+        <xsd:schema targetNamespace="urn:LibraryService">
+            <xsd:complexType name="BookInfo">
+                <xsd:sequence>
+                    <xsd:element name="inventory_number" type="xsd:string"/>
+                    <xsd:element name="title" type="xsd:string"/>
+                    <xsd:element name="author" type="xsd:string"/>
+                    <xsd:element name="year" type="xsd:int"/>
+                    <xsd:element name="location" type="xsd:string"/>
+                    <xsd:element name="status" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            
+            <xsd:complexType name="Result">
+                <xsd:sequence>
+                    <xsd:element name="success" type="xsd:boolean"/>
+                    <xsd:element name="message" type="xsd:string"/>
+                    <xsd:element name="loan_id" type="xsd:int" minOccurs="0"/>
+                    <xsd:element name="inventory_number" type="xsd:string" minOccurs="0"/>
+                    <xsd:element name="date_taken" type="xsd:string" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+
+    <message name="searchBooksByAuthorRequest">
+        <part name="author_name" type="xsd:string"/>
+    </message>
+    <message name="searchBooksByAuthorResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+    
+    <message name="getBookByInventoryRequest">
+        <part name="inventory_number" type="xsd:string"/>
+    </message>
+    <message name="getBookByInventoryResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+    
+    <message name="registerLoanRequest">
+        <part name="inventory_number" type="xsd:string"/>
+        <part name="reader_card" type="xsd:string"/>
+    </message>
+    <message name="registerLoanResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+    
+    <message name="returnBookRequest">
+        <part name="inventory_number" type="xsd:string"/>
+    </message>
+    <message name="returnBookResponse">
+        <part name="return" type="xsd:string"/>
+    </message>
+
+    <portType name="LibraryServicePortType">
+        <operation name="searchBooksByAuthor">
+            <input message="tns:searchBooksByAuthorRequest"/>
+            <output message="tns:searchBooksByAuthorResponse"/>
+        </operation>
+        <operation name="getBookByInventory">
+            <input message="tns:getBookByInventoryRequest"/>
+            <output message="tns:getBookByInventoryResponse"/>
+        </operation>
+        <operation name="registerLoan">
+            <input message="tns:registerLoanRequest"/>
+            <output message="tns:registerLoanResponse"/>
+        </operation>
+        <operation name="returnBook">
+            <input message="tns:returnBookRequest"/>
+            <output message="tns:returnBookResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="LibraryServiceBinding" type="tns:LibraryServicePortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="searchBooksByAuthor">
+            <soap:operation soapAction="urn:LibraryService#searchBooksByAuthor"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </output>
+        </operation>
+        <operation name="getBookByInventory">
+            <soap:operation soapAction="urn:LibraryService#getBookByInventory"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </output>
+        </operation>
+        <operation name="registerLoan">
+            <soap:operation soapAction="urn:LibraryService#registerLoan"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </output>
+        </operation>
+        <operation name="returnBook">
+            <soap:operation soapAction="urn:LibraryService#returnBook"/>
+            <input>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </input>
+            <output>
+                <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+                           namespace="urn:LibraryService"/>
+            </output>
+        </operation>
+    </binding>
+
+    <service name="LibraryService">
+        <port name="LibraryServicePort" binding="tns:LibraryServiceBinding">
+            <soap:address location="http://localhost/php-system/soap/soap-server.php"/>
+        </port>
+    </service>
+</definitions>

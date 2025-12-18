@@ -1,0 +1,82 @@
+{
+  "timestamp": "2025-12-18T23:08:53.329Z",
+  "summary": {
+    "passed": 8,
+    "failed": 3,
+    "warnings": 0,
+    "total": 11
+  },
+  "tests": [
+    {
+      "name": "Node.js API доступен",
+      "status": "✅ ПРОЙДЕН",
+      "result": "OK",
+      "duration": "6ms"
+    },
+    {
+      "name": "PHP SOAP Server (опционально)",
+      "status": "✅ ПРОЙДЕН",
+      "result": "OK",
+      "duration": "6ms"
+    },
+    {
+      "name": "Frontend файлы существуют",
+      "status": "✅ ПРОЙДЕН",
+      "result": "OK",
+      "duration": "0ms"
+    },
+    {
+      "name": "GET /api/physical/books",
+      "status": "✅ ПРОЙДЕН",
+      "result": "Книг: 21, Источник: MySQL напрямую",
+      "duration": "4ms"
+    },
+    {
+      "name": "POST /api/physical/loan",
+      "status": "✅ ПРОЙДЕН",
+      "result": "Выдана: Евгений Онегин, ID займа: 16",
+      "duration": "13ms"
+    },
+    {
+      "name": "POST /api/physical/return",
+      "status": "✅ ПРОЙДЕН",
+      "result": "Возвращена: 2024/00046",
+      "duration": "9ms"
+    },
+    {
+      "name": "GET /api/books/search",
+      "status": "❌ ОШИБКА",
+      "result": "Request failed with status code 404",
+      "duration": "7ms"
+    },
+    {
+      "name": "GET /api/reports/:type",
+      "status": "❌ ОШИБКА",
+      "result": "Request failed with status code 404",
+      "duration": "5ms"
+    },
+    {
+      "name": "Нельзя выдать уже выданную книгу",
+      "status": "✅ ПРОЙДЕН",
+      "result": "✅ Проверка пройдена: книга не выдана повторно",
+      "duration": "10ms"
+    },
+    {
+      "name": "Корректность статистики",
+      "status": "❌ ОШИБКА",
+      "result": "Сумма статусов не равна общему количеству",
+      "duration": "4ms"
+    },
+    {
+      "name": "Корректность формата данных",
+      "status": "✅ ПРОЙДЕН",
+      "result": "✅ Все обязательные поля присутствуют",
+      "duration": "3ms"
+    }
+  ],
+  "systemInfo": {
+    "nodeVersion": "v22.14.0",
+    "platform": "win32",
+    "apiBase": "http://localhost:3000"
+  }
+}

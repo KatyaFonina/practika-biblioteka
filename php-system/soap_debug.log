@@ -1,0 +1,27 @@
+2025-12-18 13:37:24 - SOAP запрос получен
+2025-12-18 13:37:24 - RAW запрос:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+                   xmlns:ns1="urn:LibraryService">
+    <SOAP-ENV:Body>
+        <ns1:getBookByInventory>
+            <inventory_number>LIB-2023-001</inventory_number>
+        </ns1:getBookByInventory>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+2025-12-18 13:37:24 - BookService создан
+2025-12-18 13:37:24 - getBookByInventory вызван: LIB-2023-001
+2025-12-18 13:37:30 - SOAP запрос получен
+2025-12-18 13:37:30 - RAW запрос:
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+                   xmlns:ns1="urn:LibraryService">
+    <SOAP-ENV:Body>
+        <ns1:searchBooksByAuthor>
+            <author_name>Агата Кристи</author_name>
+        </ns1:searchBooksByAuthor>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+2025-12-18 13:37:30 - BookService создан
+2025-12-18 13:37:30 - searchBooksByAuthor вызван: Агата Кристи
+2025-12-18 13:37:30 - Найдено книг: 5

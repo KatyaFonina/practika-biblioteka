@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотечная система. Практика</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book"></i> Библиотечная система</h1>
+           
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="search">
+                <i class="fas fa-search"></i> Поиск книг
+            </button>
+            <button class="tab-btn" data-tab="operations">
+                <i class="fas fa-exchange-alt"></i> Операции
+            </button>
+            <button class="tab-btn" data-tab="admin">
+                <i class="fas fa-chart-bar"></i> Админ-отчет
+            </button>
+        </div>
+
+        <div class="tab-content active" id="search">
+            <h2><i class="fas fa-search"></i> Поиск книг в каталоге</h2>
+
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Введите название, автора или ISBN...">
+                    <button id="search-btn">
+                        <i class="fas fa-search"></i> Найти
+                    </button>
+                    <button id="show-all-btn" class="btn-secondary">
+                        <i class="fas fa-list"></i> Все книги
+                    </button>
+                </div>
+
+                <div class="search-filters">
+                    <label>
+                        <input type="checkbox" id="filter-available" checked> Только доступные
+                    </label>
+                    <label>
+                        <input type="checkbox" id="filter-digital"> Цифровые ресурсы
+                    </label>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div id="search-results">
+                    <p class="placeholder">Введите запрос для поиска книг...</p>
+                </div>
+                <div class="results-stats" id="results-stats"></div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="operations">
+            <h2><i class="fas fa-exchange-alt"></i> Операции с книгами</h2>
+
+            <div class="operations-grid">
+                <div class="operation-card">
+                    <h3><i class="fas fa-hand-holding"></i> Выдача книги</h3>
+                    <div class="form-group">
+                        <label for="borrow-inv">Инвентарный номер:</label>
+                        <input type="text" id="borrow-inv" placeholder="LIB-2023-001">
+                    </div>
+                    <div class="form-group">
+                        <label for="reader-id">ID читателя:</label>
+                        <input type="text" id="reader-id" placeholder="STUDENT-001">
+                    </div>
+                    <button id="borrow-btn" class="btn-primary">
+                        <i class="fas fa-check"></i> Выдать книгу
+                    </button>
+                    <div id="borrow-result" class="result-message"></div>
+                </div>
+
+                <div class="operation-card">
+                    <h3><i class="fas fa-undo"></i> Возврат книги</h3>
+                    <div class="form-group">
+                        <label for="return-inv">Инвентарный номер:</label>
+                        <input type="text" id="return-inv" placeholder="LIB-2023-001">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-id">ID займа (необязательно):</label>
+                        <input type="text" id="loan-id" placeholder="LOAN-001">
+                    </div>
+                    <button id="return-btn" class="btn-secondary">
+                        <i class="fas fa-check"></i> Вернуть книгу
+                    </button>
+                    <div id="return-result" class="result-message"></div>
+                </div>
+            </div>
+
+            <div class="history-section">
+                <h3><i class="fas fa-history"></i> Последние операции</h3>
+                <div id="operations-history">
+                    <p class="placeholder">Операций пока не было</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="admin">
+            <h2><i class="fas fa-chart-bar"></i> Административный отчет</h2>
+
+            <div class="admin-controls">
+                <div class="control-group">
+                    <label for="report-type">Тип отчета:</label>
+                    <select id="report-type">
+                        <option value="summary">Общая статистика</option>
+                        <option value="popular">Популярные книги</option>
+                        <option value="overdue">Просроченные книги</option>
+                        <option value="readers">Активные читатели</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="period">Период:</label>
+                    <select id="period">
+                        <option value="week">За неделю</option>
+                        <option value="month" selected>За месяц</option>
+                        <option value="quarter">За квартал</option>
+                        <option value="year">За год</option>
+                    </select>
+                </div>
+
+                <button id="generate-report" class="btn-primary">
+                    <i class="fas fa-sync-alt"></i> Сформировать отчет
+                </button>
+
+                <button id="export-report" class="btn-secondary">
+                    <i class="fas fa-download"></i> Экспорт в CSV
+                </button>
+            </div>
+
+            <div class="report-container">
+                <iframe id="report-frame" src="" style="width:100%; height:500px; border:none; display:none;">
+                </iframe>
+
+                <div id="report-content">
+                    <div class="report-placeholder">
+                        <i class="fas fa-chart-line"></i>
+                        <p>Нажмите "Сформировать отчет" для загрузки данных</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="status-label">API:</span>
+                    <span id="api-status" class="status-offline">
+                        <i class="fas fa-circle"></i> Не подключен
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">База данных:</span>
+                    <span id="db-status" class="status-offline">
+                        <i class="fas fa-circle"></i> Офлайн
+                    </span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Обновлено:</span>
+                    <span id="last-update">--:--:--</span>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p><code>localhost:3000</code></p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
